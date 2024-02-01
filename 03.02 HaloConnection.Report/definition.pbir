@@ -2,7 +2,7 @@
   "version": "1.0",
   "datasetReference": {
     "byPath": {
-      "path": "../HaloConnection.Dataset"
+      "path": "../03.02 HaloConnection.Dataset"
     },
     "byConnection": null
   }

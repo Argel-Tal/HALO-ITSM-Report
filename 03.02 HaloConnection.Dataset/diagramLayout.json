@@ -10,76 +10,24 @@
       "nodes": [
         {
           "location": {
-            "x": 0,
-            "y": 257.05037457992029
+            "x": 514.3692867581932,
+            "y": 144.86319303272063
           },
           "nodeIndex": "Clients",
           "nodeLineageTag": "b80d486c-a37e-430e-ba7c-a856aef2f4ba",
           "size": {
-            "height": 300,
+            "height": 227.31534716660309,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 3
         },
         {
           "location": {
-            "x": 312.02361393455891,
-            "y": 16.875
+            "x": 853.25462021813769,
+            "y": 0
           },
           "nodeIndex": "Sites",
           "nodeLineageTag": "00c4dc7c-ef0e-48f7-923c-24ce3c0353f4",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 5
-        },
-        {
-          "location": {
-            "x": 1357.2141607972953,
-            "y": 0
-          },
-          "nodeIndex": "Suppliers",
-          "nodeLineageTag": "371e79b1-170f-4873-a00d-9c4428a071a4",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 6
-        },
-        {
-          "location": {
-            "x": 297.70997778862443,
-            "y": 920.69285697180555
-          },
-          "nodeIndex": "TicketTypes",
-          "nodeLineageTag": "cc849e06-7c92-4a41-ba3b-764008565686",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 10
-        },
-        {
-          "location": {
-            "x": 300.45197334634918,
-            "y": 434.02170321775634
-          },
-          "nodeIndex": "Users",
-          "nodeLineageTag": "fb7d9636-1131-4678-a273-60bf93e39487",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 7
-        },
-        {
-          "location": {
-            "x": 0,
-            "y": 644.17515597518673
-          },
-          "nodeIndex": "Tickets",
-          "nodeLineageTag": "4e544384-e753-41a1-b3df-268e23a11e6f",
           "size": {
             "height": 300,
             "width": 234
@@ -88,8 +36,60 @@
         },
         {
           "location": {
-            "x": 675.87354540126557,
-            "y": 200.17263671568423
+            "x": 1120.1989885144792,
+            "y": 0
+          },
+          "nodeIndex": "Suppliers",
+          "nodeLineageTag": "371e79b1-170f-4873-a00d-9c4428a071a4",
+          "size": {
+            "height": 295.25969655434369,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1179.4064186807002,
+            "y": 1096.0840844610893
+          },
+          "nodeIndex": "TicketTypes",
+          "nodeLineageTag": "cc849e06-7c92-4a41-ba3b-764008565686",
+          "size": {
+            "height": 170.43170581872732,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 575.15681807296676,
+            "y": 430.86150092065213
+          },
+          "nodeIndex": "Users",
+          "nodeLineageTag": "fb7d9636-1131-4678-a273-60bf93e39487",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 846.934215623929,
+            "y": 852.74850758406478
+          },
+          "nodeIndex": "Tickets",
+          "nodeLineageTag": "4e544384-e753-41a1-b3df-268e23a11e6f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 476.69033771230272
           },
           "nodeIndex": "Agent teams",
           "nodeLineageTag": "e690a564-122c-4406-b802-ac2061a749a4",
@@ -97,12 +97,12 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 11
+          "zIndex": 7
         },
         {
           "location": {
-            "x": 570.42497518765367,
-            "y": 435.87246183189717
+            "x": 248.0758803226808,
+            "y": 141.97364820120515
           },
           "nodeIndex": "Agents",
           "nodeLineageTag": "968d6141-c886-4b0d-9eb9-0547f938a6f9",
@@ -110,33 +110,33 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 9
         },
         {
           "location": {
-            "x": 963.03374769837,
-            "y": 0
+            "x": 0,
+            "y": 699.98480880858369
           },
           "nodeIndex": "Teams",
           "nodeLineageTag": "4f145061-06a6-4a21-935b-ecdc6a7b0f0d",
           "size": {
-            "height": 300,
+            "height": 224.15514486949883,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 1
         },
         {
           "location": {
-            "x": 564.43005152385945,
-            "y": 921.88341328884178
+            "x": 1166.4485891222121,
+            "y": 684.18379732306232
           },
           "nodeIndex": "Statuses",
           "nodeLineageTag": "4a24ed7e-04df-406f-989d-9fe97d1156a8",
           "size": {
-            "height": 300,
+            "height": 254.177066691989,
             "width": 234
           },
-          "zIndex": 9
+          "zIndex": 5
         },
         {
           "location": {
@@ -149,7 +149,20 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1463.4064186807002,
+            "y": 483.25789513990833
+          },
+          "nodeIndex": "DateDimensionBI",
+          "nodeLineageTag": "07bdeb20-11ef-4d1e-9197-64b3dcc87b6b",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
