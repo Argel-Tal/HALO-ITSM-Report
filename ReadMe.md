@@ -3,7 +3,7 @@
 ## Purpose: Provide IT with a single source of reporting on IT support tickets
 TODO
 
-### Key features
+### Key features:
 1. Who's assigned?
 	- Level 1:	Team
 	- Level 2:	Agent
