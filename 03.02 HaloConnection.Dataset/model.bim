@@ -117,23 +117,23 @@
           }
         ],
         "expression": [
-          "let\r",
-          "    Source = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let\r",
-          "        loginURL = #\"HaloITSM-AuthURL\",\r",
-          "        TokenUri = \"/token\", // which domain is this a token for\r",
-          "        ResourceId = #\"HaloITSM-Resource\", // where is this token for\r",
-          "        TokenResponse = Json.Document(\r",
-          "            Web.Contents(loginURL\r",
-          "\t\t\t    , [RelativePath = TokenUri\r",
-          "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))\r",
-          "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}\r",
-          "\t\t\t    ]\r",
-          "            ) // end web contents\r",
-          "        ), // end json\r",
-          "        generatedToken = TokenResponse[access_token] // assign token value\r",
-          "    in\r",
-          "    generatedToken\r",
-          "in\r",
+          "let",
+          "    Source = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let",
+          "        loginURL = #\"HaloITSM-AuthURL\",",
+          "        TokenUri = \"/token\", // which domain is this a token for",
+          "        ResourceId = #\"HaloITSM-Resource\", // where is this token for",
+          "        TokenResponse = Json.Document(",
+          "            Web.Contents(loginURL",
+          "\t\t\t    , [RelativePath = TokenUri",
+          "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))",
+          "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}",
+          "\t\t\t    ]",
+          "            ) // end web contents",
+          "        ), // end json",
+          "        generatedToken = TokenResponse[access_token] // assign token value",
+          "    in",
+          "    generatedToken",
+          "in",
           "    Source"
         ],
         "kind": "m",
@@ -153,9 +153,9 @@
           }
         ],
         "expression": [
-          "let\r",
-          "    Source = GenerateHaloToken(#\"HaloITSM-AuthURL\", #\"HaloITSM-ClientID\", #\"HaloITSM-Secret\")\r",
-          "in\r",
+          "let",
+          "    Source = GenerateHaloToken(#\"HaloITSM-AuthURL\", #\"HaloITSM-ClientID\", #\"HaloITSM-Secret\")",
+          "in",
           "    Source"
         ],
         "kind": "m",
@@ -176,43 +176,43 @@
         ],
         "description": "Contains nothing, as such not currently used",
         "expression": [
-          "let\r",
-          "    // a function which generates the token - needs to happen at the same time as the query, so PBI doesn't do dumb firewall stuff\r",
-          "    makeToken = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let\r",
-          "        loginURL = #\"HaloITSM-AuthURL\",\r",
-          "        TokenUri = \"/token\", // which domain is this a token for\r",
-          "        ResourceId = #\"HaloITSM-Resource\", // where is this token for\r",
-          "        TokenResponse = Json.Document(\r",
-          "            Web.Contents(loginURL\r",
-          "\t\t\t    , [RelativePath = TokenUri\r",
-          "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))\r",
-          "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}\r",
-          "\t\t\t    ]\r",
-          "            ) // end web contents\r",
-          "        ), // end json\r",
-          "        generatedToken = TokenResponse[access_token] // assign token value\r",
-          "    in\r",
-          "    generatedToken,\r",
-          "    myToken = makeToken(\r",
-          "                        #\"HaloITSM-ResourceURL\"\r",
-          "                        , #\"HaloITSM-ClientID\"\r",
-          "                        , #\"HaloITSM-Secret\"\r",
-          "                    ) // end makeToken\r",
-          "    , \r",
-          "    // Ping API for json\r",
-          "    Source = Json.Document(\r",
-          "        Web.Contents(\r",
-          "            #\"HaloITSM-ResourceURL\"\r",
-          "            , [\r",
-          "                RelativePath = \"Item\"\r",
-          "                , Headers = [\r",
-          "                    Authorization = \"Bearer \" \r",
-          "                    &  myToken\r",
-          "                ]\r",
-          "            ]\r",
-          "        )\r",
-          "    )\r",
-          "in\r",
+          "let",
+          "    // a function which generates the token - needs to happen at the same time as the query, so PBI doesn't do dumb firewall stuff",
+          "    makeToken = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let",
+          "        loginURL = #\"HaloITSM-AuthURL\",",
+          "        TokenUri = \"/token\", // which domain is this a token for",
+          "        ResourceId = #\"HaloITSM-Resource\", // where is this token for",
+          "        TokenResponse = Json.Document(",
+          "            Web.Contents(loginURL",
+          "\t\t\t    , [RelativePath = TokenUri",
+          "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))",
+          "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}",
+          "\t\t\t    ]",
+          "            ) // end web contents",
+          "        ), // end json",
+          "        generatedToken = TokenResponse[access_token] // assign token value",
+          "    in",
+          "    generatedToken,",
+          "    myToken = makeToken(",
+          "                        #\"HaloITSM-ResourceURL\"",
+          "                        , #\"HaloITSM-ClientID\"",
+          "                        , #\"HaloITSM-Secret\"",
+          "                    ) // end makeToken",
+          "    , ",
+          "    // Ping API for json",
+          "    Source = Json.Document(",
+          "        Web.Contents(",
+          "            #\"HaloITSM-ResourceURL\"",
+          "            , [",
+          "                RelativePath = \"Item\"",
+          "                , Headers = [",
+          "                    Authorization = \"Bearer \" ",
+          "                    &  myToken",
+          "                ]",
+          "            ]",
+          "        )",
+          "    )",
+          "in",
           "    Source"
         ],
         "kind": "m",
@@ -232,56 +232,56 @@
           }
         ],
         "expression": [
-          "let\r",
-          "    // a function which generates the token - needs to happen at the same time as the query, so PBI doesn't do dumb firewall stuff\r",
-          "    makeToken = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let\r",
-          "        loginURL = #\"HaloITSM-AuthURL\",\r",
-          "        TokenUri = \"/token\", // which domain is this a token for\r",
-          "        ResourceId = #\"HaloITSM-Resource\", // where is this token for\r",
-          "        TokenResponse = Json.Document(\r",
-          "            Web.Contents(loginURL\r",
-          "\t\t\t    , [RelativePath = TokenUri\r",
-          "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))\r",
-          "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}\r",
-          "\t\t\t    ]\r",
-          "            ) // end web contents\r",
-          "        ), // end json\r",
-          "        generatedToken = TokenResponse[access_token] // assign token value\r",
-          "    in\r",
-          "    generatedToken,\r",
-          "    myToken = makeToken(\r",
-          "                        #\"HaloITSM-ResourceURL\"\r",
-          "                        , #\"HaloITSM-ClientID\"\r",
-          "                        , #\"HaloITSM-Secret\"\r",
-          "                    ) // end makeToken\r",
-          "    , \r",
-          "    // Ping API for json\r",
-          "    Source = Json.Document(\r",
-          "        Web.Contents(\r",
-          "            #\"HaloITSM-ResourceURL\"\r",
-          "            , [\r",
-          "                RelativePath = \"Agent\"\r",
-          "                , Headers = [\r",
-          "                    Authorization = \"Bearer \" \r",
-          "                    &  myToken\r",
-          "                ]\r",
-          "            ]\r",
-          "        )\r",
-          "    ),\r",
-          "    #\"Converted to Table\" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),\r",
-          "    #\"Expanded Column1\" = Table.ExpandRecordColumn(\r",
-          "        #\"Converted to Table\", \"Column1\", {\r",
-          "            \"id\", \"name\", \"team\", \"isdisabled\", \"initials\", \"firstname\", \"surname\", \"colour\", \"jobtitle\", \"sms\", \"extensionnumber\", \"is_agent\", \"teams\", \"departments\", \"linemanager\", \"exchange_authorized\", \"sentinel_authorized\", \"licence_type\", \"use\", \"allowbeyondtrustinvites\", \"namewithinactive\", \"apptsync\", \"enableshifts\", \"sendemailerrors\", \"can_approve_purchaseorder\", \"can_approve_quote\", \"email\", \"lastlogindate\", \"isapiagent\"\r",
-          "        }\r",
-          "        , {\r",
-          "            \"id\", \"name\", \"team\", \"isdisabled\", \"initials\", \"firstname\", \"surname\", \"colour\", \"jobtitle\", \"sms\", \"extensionnumber\", \"is_agent\", \"teams\", \"departments\", \"linemanager\", \"exchange_authorized\", \"sentinel_authorized\", \"licence_type\", \"use\", \"allowbeyondtrustinvites\", \"namewithinactive\", \"apptsync\", \"enableshifts\", \"sendemailerrors\", \"can_approve_purchaseorder\", \"can_approve_quote\", \"email\", \"lastlogindate\", \"isapiagent\"\r",
-          "        }\r",
-          "    ),\r",
-          "    #\"Renamed Columns\" = Table.RenameColumns(#\"Expanded Column1\",{{\"id\", \"agent id\"}}),\r",
-          "    #\"Replaced Value\" = Table.ReplaceValue(#\"Renamed Columns\",\"\",null,Replacer.ReplaceValue,{\"agent id\", \"name\", \"team\", \"isdisabled\", \"initials\", \"firstname\", \"surname\", \"colour\", \"jobtitle\", \"sms\", \"extensionnumber\", \"is_agent\", \"teams\", \"departments\", \"linemanager\", \"exchange_authorized\", \"sentinel_authorized\", \"licence_type\", \"use\", \"allowbeyondtrustinvites\", \"namewithinactive\", \"apptsync\", \"enableshifts\", \"sendemailerrors\", \"can_approve_purchaseorder\", \"can_approve_quote\", \"email\", \"lastlogindate\", \"isapiagent\"}),\r",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Replaced Value\",{{\"isdisabled\", type logical}, {\"exchange_authorized\", type logical}, {\"sentinel_authorized\", type logical}, {\"enableshifts\", type logical}, {\"sendemailerrors\", type logical}, {\"can_approve_purchaseorder\", type logical}, {\"can_approve_quote\", type logical}, {\"isapiagent\", type logical}, {\"lastlogindate\", type datetimezone}, {\"is_agent\", type logical}}),\r",
-          "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Changed Type\",{{\"team\", \"Primary team\"}})\r",
-          "in\r",
+          "let",
+          "    // a function which generates the token - needs to happen at the same time as the query, so PBI doesn't do dumb firewall stuff",
+          "    makeToken = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let",
+          "        loginURL = #\"HaloITSM-AuthURL\",",
+          "        TokenUri = \"/token\", // which domain is this a token for",
+          "        ResourceId = #\"HaloITSM-Resource\", // where is this token for",
+          "        TokenResponse = Json.Document(",
+          "            Web.Contents(loginURL",
+          "\t\t\t    , [RelativePath = TokenUri",
+          "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))",
+          "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}",
+          "\t\t\t    ]",
+          "            ) // end web contents",
+          "        ), // end json",
+          "        generatedToken = TokenResponse[access_token] // assign token value",
+          "    in",
+          "    generatedToken,",
+          "    myToken = makeToken(",
+          "                        #\"HaloITSM-ResourceURL\"",
+          "                        , #\"HaloITSM-ClientID\"",
+          "                        , #\"HaloITSM-Secret\"",
+          "                    ) // end makeToken",
+          "    , ",
+          "    // Ping API for json",
+          "    Source = Json.Document(",
+          "        Web.Contents(",
+          "            #\"HaloITSM-ResourceURL\"",
+          "            , [",
+          "                RelativePath = \"Agent\"",
+          "                , Headers = [",
+          "                    Authorization = \"Bearer \" ",
+          "                    &  myToken",
+          "                ]",
+          "            ]",
+          "        )",
+          "    ),",
+          "    #\"Converted to Table\" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+          "    #\"Expanded Column1\" = Table.ExpandRecordColumn(",
+          "        #\"Converted to Table\", \"Column1\", {",
+          "            \"id\", \"name\", \"team\", \"isdisabled\", \"initials\", \"firstname\", \"surname\", \"colour\", \"jobtitle\", \"sms\", \"extensionnumber\", \"is_agent\", \"teams\", \"departments\", \"linemanager\", \"exchange_authorized\", \"sentinel_authorized\", \"licence_type\", \"use\", \"allowbeyondtrustinvites\", \"namewithinactive\", \"apptsync\", \"enableshifts\", \"sendemailerrors\", \"can_approve_purchaseorder\", \"can_approve_quote\", \"email\", \"lastlogindate\", \"isapiagent\"",
+          "        }",
+          "        , {",
+          "            \"id\", \"name\", \"team\", \"isdisabled\", \"initials\", \"firstname\", \"surname\", \"colour\", \"jobtitle\", \"sms\", \"extensionnumber\", \"is_agent\", \"teams\", \"departments\", \"linemanager\", \"exchange_authorized\", \"sentinel_authorized\", \"licence_type\", \"use\", \"allowbeyondtrustinvites\", \"namewithinactive\", \"apptsync\", \"enableshifts\", \"sendemailerrors\", \"can_approve_purchaseorder\", \"can_approve_quote\", \"email\", \"lastlogindate\", \"isapiagent\"",
+          "        }",
+          "    ),",
+          "    #\"Renamed Columns\" = Table.RenameColumns(#\"Expanded Column1\",{{\"id\", \"agent id\"}}),",
+          "    #\"Replaced Value\" = Table.ReplaceValue(#\"Renamed Columns\",\"\",null,Replacer.ReplaceValue,{\"agent id\", \"name\", \"team\", \"isdisabled\", \"initials\", \"firstname\", \"surname\", \"colour\", \"jobtitle\", \"sms\", \"extensionnumber\", \"is_agent\", \"teams\", \"departments\", \"linemanager\", \"exchange_authorized\", \"sentinel_authorized\", \"licence_type\", \"use\", \"allowbeyondtrustinvites\", \"namewithinactive\", \"apptsync\", \"enableshifts\", \"sendemailerrors\", \"can_approve_purchaseorder\", \"can_approve_quote\", \"email\", \"lastlogindate\", \"isapiagent\"}),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Replaced Value\",{{\"isdisabled\", type logical}, {\"exchange_authorized\", type logical}, {\"sentinel_authorized\", type logical}, {\"enableshifts\", type logical}, {\"sendemailerrors\", type logical}, {\"can_approve_purchaseorder\", type logical}, {\"can_approve_quote\", type logical}, {\"isapiagent\", type logical}, {\"lastlogindate\", type datetimezone}, {\"is_agent\", type logical}}),",
+          "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Changed Type\",{{\"team\", \"Primary team\"}})",
+          "in",
           "    #\"Renamed Columns1\""
         ],
         "kind": "m",
@@ -302,11 +302,11 @@
         ],
         "description": "this manual table provides higher level categorisations for the statuses in Halo, and some utility toggles",
         "expression": [
-          "let\r",
-          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"lZPNDoIwEIRfhfTMgbb89YgC0cSoUYwHwqFB1CaEHsD4+lKqBk3jyqmbzJftbKeb5wgjG2XSimV/ptFqn4xOjAo7R6SvjsutQSdaD99AtjsYdAboAWiBgoTbV9Gdi040F2t2a0VTta2BpgPtAY7UyElb8pp31cnQxdWYunQtO3EWRsobKOxPsoaDabh6/Fg21Uh5zsRCTVCQgBLGKsE5b8qqrj8mffVhGvPAm1wwSOxMmp94nxl85akjIPD/YZB1omLcXK2FrE1Zs0B/VOevl6Jq61IuzIyvGQJZomCydNpaUP/HXhQP\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"status id\" = _t, Category = _t, External = _t, Terminal = _t, Order = _t]),\r",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"status id\", Int64.Type}, {\"Category\", type text}, {\"External\", type logical}, {\"Terminal\", type logical}, {\"Order\", Int64.Type}}),\r",
-          "    #\"Sorted Rows\" = Table.Sort(#\"Changed Type\",{{\"status id\", Order.Ascending}})\r",
-          "in\r",
+          "let",
+          "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"lZPNDoIwEIRfhfTMgbb89YgC0cSoUYwHwqFB1CaEHsD4+lKqBk3jyqmbzJftbKeb5wgjG2XSimV/ptFqn4xOjAo7R6SvjsutQSdaD99AtjsYdAboAWiBgoTbV9Gdi040F2t2a0VTta2BpgPtAY7UyElb8pp31cnQxdWYunQtO3EWRsobKOxPsoaDabh6/Fg21Uh5zsRCTVCQgBLGKsE5b8qqrj8mffVhGvPAm1wwSOxMmp94nxl85akjIPD/YZB1omLcXK2FrE1Zs0B/VOevl6Jq61IuzIyvGQJZomCydNpaUP/HXhQP\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"status id\" = _t, Category = _t, External = _t, Terminal = _t, Order = _t]),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"status id\", Int64.Type}, {\"Category\", type text}, {\"External\", type logical}, {\"Terminal\", type logical}, {\"Order\", Int64.Type}}),",
+          "    #\"Sorted Rows\" = Table.Sort(#\"Changed Type\",{{\"status id\", Order.Ascending}})",
+          "in",
           "    #\"Sorted Rows\""
         ],
         "kind": "m",
@@ -326,49 +326,49 @@
           }
         ],
         "expression": [
-          "let\r",
-          "    // a function which generates the token - needs to happen at the same time as the query, so PBI doesn't do dumb firewall stuff\r",
-          "    makeToken = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let\r",
-          "        loginURL = #\"HaloITSM-AuthURL\",\r",
-          "        TokenUri = \"/token\", // which domain is this a token for\r",
-          "        ResourceId = #\"HaloITSM-Resource\", // where is this token for\r",
-          "        TokenResponse = Json.Document(\r",
-          "            Web.Contents(loginURL\r",
-          "\t\t\t    , [RelativePath = TokenUri\r",
-          "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))\r",
-          "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}\r",
-          "\t\t\t    ]\r",
-          "            ) // end web contents\r",
-          "        ), // end json\r",
-          "        generatedToken = TokenResponse[access_token] // assign token value\r",
-          "    in\r",
-          "    generatedToken,\r",
-          "    myToken = makeToken(\r",
-          "                        #\"HaloITSM-ResourceURL\"\r",
-          "                        , #\"HaloITSM-ClientID\"\r",
-          "                        , #\"HaloITSM-Secret\"\r",
-          "                    ) // end makeToken\r",
-          "    , \r",
-          "    // Ping API for json\r",
-          "    Source = Json.Document(\r",
-          "        Web.Contents(\r",
-          "            #\"HaloITSM-ResourceURL\"\r",
-          "            , [\r",
-          "                RelativePath = \"Status\"\r",
-          "                , Headers = [\r",
-          "                    Authorization = \"Bearer \" \r",
-          "                    &  myToken\r",
-          "                ]\r",
-          "            ]\r",
-          "        )\r",
-          "    ),\r",
-          "    #\"Converted to Table\" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),\r",
-          "    #\"Expanded Column1\" = Table.ExpandRecordColumn(#\"Converted to Table\", \"Column1\", {\"id\", \"guid\", \"name\", \"shortname\", \"type\", \"sequence\", \"colour\", \"slaaction\", \"showonquickchange\", \"timeuntilloffhold\", \"statuschangeto\", \"statuschangetofreq\", \"useworkinghours\", \"statusemailfreqdays\", \"statusemailid\", \"statusnochangehours\", \"nochangehoursrecurring\", \"statusnochangehoursmanager\", \"statusnochangehoursmanagerrecurring\", \"statusnochangehourssection\", \"statusnochangehourssectionrecurring\", \"nochangetemplate\"}, {\"id\", \"guid\", \"name\", \"shortname\", \"type\", \"sequence\", \"colour\", \"slaaction\", \"showonquickchange\", \"timeuntilloffhold\", \"statuschangeto\", \"statuschangetofreq\", \"useworkinghours\", \"statusemailfreqdays\", \"statusemailid\", \"statusnochangehours\", \"nochangehoursrecurring\", \"statusnochangehoursmanager\", \"statusnochangehoursmanagerrecurring\", \"statusnochangehourssection\", \"statusnochangehourssectionrecurring\", \"nochangetemplate\"}),\r",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Expanded Column1\",{{\"showonquickchange\", type logical}, {\"statusnochangehourssectionrecurring\", type logical}, {\"statusnochangehoursmanagerrecurring\", type logical}, {\"nochangehoursrecurring\", type logical}, {\"id\", Int64.Type}}),\r",
-          "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"id\", \"status id\"}}),\r",
-          "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Renamed Columns\",{\"status id\", \"guid\", \"name\"}),\r",
-          "    #\"Sorted Rows\" = Table.Sort(#\"Removed Other Columns\",{{\"status id\", Order.Ascending}})\r",
-          "in\r",
+          "let",
+          "    // a function which generates the token - needs to happen at the same time as the query, so PBI doesn't do dumb firewall stuff",
+          "    makeToken = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let",
+          "        loginURL = #\"HaloITSM-AuthURL\",",
+          "        TokenUri = \"/token\", // which domain is this a token for",
+          "        ResourceId = #\"HaloITSM-Resource\", // where is this token for",
+          "        TokenResponse = Json.Document(",
+          "            Web.Contents(loginURL",
+          "\t\t\t    , [RelativePath = TokenUri",
+          "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))",
+          "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}",
+          "\t\t\t    ]",
+          "            ) // end web contents",
+          "        ), // end json",
+          "        generatedToken = TokenResponse[access_token] // assign token value",
+          "    in",
+          "    generatedToken,",
+          "    myToken = makeToken(",
+          "                        #\"HaloITSM-ResourceURL\"",
+          "                        , #\"HaloITSM-ClientID\"",
+          "                        , #\"HaloITSM-Secret\"",
+          "                    ) // end makeToken",
+          "    , ",
+          "    // Ping API for json",
+          "    Source = Json.Document(",
+          "        Web.Contents(",
+          "            #\"HaloITSM-ResourceURL\"",
+          "            , [",
+          "                RelativePath = \"Status\"",
+          "                , Headers = [",
+          "                    Authorization = \"Bearer \" ",
+          "                    &  myToken",
+          "                ]",
+          "            ]",
+          "        )",
+          "    ),",
+          "    #\"Converted to Table\" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+          "    #\"Expanded Column1\" = Table.ExpandRecordColumn(#\"Converted to Table\", \"Column1\", {\"id\", \"guid\", \"name\", \"shortname\", \"type\", \"sequence\", \"colour\", \"slaaction\", \"showonquickchange\", \"timeuntilloffhold\", \"statuschangeto\", \"statuschangetofreq\", \"useworkinghours\", \"statusemailfreqdays\", \"statusemailid\", \"statusnochangehours\", \"nochangehoursrecurring\", \"statusnochangehoursmanager\", \"statusnochangehoursmanagerrecurring\", \"statusnochangehourssection\", \"statusnochangehourssectionrecurring\", \"nochangetemplate\"}, {\"id\", \"guid\", \"name\", \"shortname\", \"type\", \"sequence\", \"colour\", \"slaaction\", \"showonquickchange\", \"timeuntilloffhold\", \"statuschangeto\", \"statuschangetofreq\", \"useworkinghours\", \"statusemailfreqdays\", \"statusemailid\", \"statusnochangehours\", \"nochangehoursrecurring\", \"statusnochangehoursmanager\", \"statusnochangehoursmanagerrecurring\", \"statusnochangehourssection\", \"statusnochangehourssectionrecurring\", \"nochangetemplate\"}),",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Expanded Column1\",{{\"showonquickchange\", type logical}, {\"statusnochangehourssectionrecurring\", type logical}, {\"statusnochangehoursmanagerrecurring\", type logical}, {\"nochangehoursrecurring\", type logical}, {\"id\", Int64.Type}}),",
+          "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"id\", \"status id\"}}),",
+          "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Renamed Columns\",{\"status id\", \"guid\", \"name\"}),",
+          "    #\"Sorted Rows\" = Table.Sort(#\"Removed Other Columns\",{{\"status id\", Order.Ascending}})",
+          "in",
           "    #\"Sorted Rows\""
         ],
         "kind": "m",
@@ -388,6 +388,158 @@
         "kind": "m",
         "lineageTag": "16ccb60c-5d9c-447e-b054-db4ba52a0c1f",
         "queryGroup": "00 Utilities\\00-00 Params"
+      },
+      {
+        "name": "Tickets Raw",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    // a function which generates the token - needs to happen at the same time as the query, so PBI doesn't do dumb firewall stuff",
+          "    makeToken = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let",
+          "        loginURL = #\"HaloITSM-AuthURL\",",
+          "        TokenUri = \"/token\", // which domain is this a token for",
+          "        ResourceId = #\"HaloITSM-Resource\", // where is this token for",
+          "        TokenResponse = Json.Document(",
+          "            Web.Contents(loginURL",
+          "\t\t\t    , [RelativePath = TokenUri",
+          "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))",
+          "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}",
+          "\t\t\t    ]",
+          "            ) // end web contents",
+          "        ), // end json",
+          "        generatedToken = TokenResponse[access_token] // assign token value",
+          "    in generatedToken // end function makeToken",
+          "    , ",
+          "    // invoke said function",
+          "    myToken = makeToken(",
+          "                        #\"HaloITSM-ResourceURL\"",
+          "                        , #\"HaloITSM-ClientID\"",
+          "                        , #\"HaloITSM-Secret\"",
+          "                    ) // end makeToken",
+          "    , ",
+          "    // invoke function on page1 to get ticketCount for pagination",
+          "    firstPage = Json.Document(",
+          "            Web.Contents(",
+          "                #\"HaloITSM-ResourceURL\"",
+          "                , [",
+          "                    RelativePath = \"Tickets?pageinate=true&page_size=\" & Text.From(#\"pageSize\") & \"&page_no=\" & Text.From(1) // use page 1 to access how many records there will be",
+          "                    , Headers = [",
+          "                        Authorization = \"Bearer \" &  myToken",
+          "                    ]",
+          "                ]",
+          "            ) // end webcontents",
+          "        ),",
+          "    pageList = {1..Number.RoundUp(@firstPage[record_count] / pageSize)},",
+          "    // a function which asks for one page of data",
+          "    getPage = let getPages = (pageNumber) => ",
+          "        Json.Document(",
+          "            Web.Contents(",
+          "                #\"HaloITSM-ResourceURL\"",
+          "                , [",
+          "                    RelativePath = \"Tickets?pageinate=true&page_size=\" & Text.From(#\"pageSize\") & \"&page_no=\" & Text.From(pageNumber) //pageNumber",
+          "                    , Headers = [",
+          "                        Authorization = \"Bearer \" &  myToken",
+          "                    ]",
+          "                ]",
+          "            ) // end webcontents",
+          "        )[tickets] // get part of json containing ticket list",
+          "    in getPages // end function getPage",
+          "    , ",
+          "    #\"Converted page list to Table\" = Table.FromList(pageList, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
+          "    #\"Invoked getPage\" = Table.AddColumn(#\"Converted page list to Table\", \"GetPage\", each getPage(Text.From([Column1]))),",
+          "    #\"Expanded getPage list\" = Table.ExpandListColumn(#\"Invoked getPage\", \"GetPage\"),",
+          "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Expanded getPage list\",{\"GetPage\"}), ",
+          "    #\"Expanded getPage Record\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"GetPage\", {\"id\", \"dateoccurred\", \"summary\", \"details\", \"status_id\", \"tickettype_id\", \"sla_id\", \"priority_id\", \"client_id\", \"client_name\", \"site_id\", \"site_name\", \"user_id\", \"user_name\", \"team\", \"agent_id\", \"category_1\", \"category_2\", \"category_3\", \"category_4\", \"estimate\", \"estimatedays\", \"parent_id\", \"child_count\", \"attachment_count\", \"flagged\", \"read\", \"enduserstatus\", \"onhold\", \"respondbydate\", \"fixbydate\", \"dateassigned\", \"excludefromsla\", \"slaholdtime\", \"site_timezone\", \"lastactiondate\", \"organisation_id\", \"department_id\", \"reportedby\", \"user_email\", \"emailtolist\", \"emailtolistsupplier\", \"emailcclist\", \"emailcclistsupplier\", \"matched_kb_id\", \"product_id\", \"release_id\", \"release2_id\", \"release3_id\", \"lastincomingemail\", \"inventory_number\", \"workflow_id\", \"workflow_step\", \"hasbeenclosed\", \"is_vip\", \"isimportantcontact\", \"inactive\", \"impact\", \"urgency\", \"startdate\", \"starttime\", \"starttimeslot\", \"targetdate\", \"targettime\", \"targettimeslot\", \"deadlinedate\", \"oppcompanyname\", \"oppvalueadjusted\", \"cost\", \"quantity\", \"projecttimebudget\", \"projectmoneybudget\", \"projecttimeactual\", \"projectmoneyactual\", \"userdef1\", \"userdef2\", \"userdef3\", \"userdef4\", \"userdef5\", \"source\", \"release_important\", \"releasenotegroup_id\", \"third_party_id\", \"third_party_id_string\", \"supplier_status\", \"appointment_type\", \"section_timezone\", \"projectinternaltask\", \"impactlevel\", \"use\", \"maximumRestrictedPriority\", \"idsummary\", \"ticketage\", \"useful_count\", \"notuseful_count\", \"itil_requesttype_id\", \"closed_in_integration_system\", \"approval_status\"}, {\"id\", \"dateoccurred\", \"summary\", \"details\", \"status_id\", \"tickettype_id\", \"sla_id\", \"priority_id\", \"client_id\", \"client_name\", \"site_id\", \"site_name\", \"user_id\", \"user_name\", \"team\", \"agent_id\", \"category_1\", \"category_2\", \"category_3\", \"category_4\", \"estimate\", \"estimatedays\", \"parent_id\", \"child_count\", \"attachment_count\", \"flagged\", \"read\", \"enduserstatus\", \"onhold\", \"respondbydate\", \"fixbydate\", \"dateassigned\", \"excludefromsla\", \"slaholdtime\", \"site_timezone\", \"lastactiondate\", \"organisation_id\", \"department_id\", \"reportedby\", \"user_email\", \"emailtolist\", \"emailtolistsupplier\", \"emailcclist\", \"emailcclistsupplier\", \"matched_kb_id\", \"product_id\", \"release_id\", \"release2_id\", \"release3_id\", \"lastincomingemail\", \"inventory_number\", \"workflow_id\", \"workflow_step\", \"hasbeenclosed\", \"is_vip\", \"isimportantcontact\", \"inactive\", \"impact\", \"urgency\", \"startdate\", \"starttime\", \"starttimeslot\", \"targetdate\", \"targettime\", \"targettimeslot\", \"deadlinedate\", \"oppcompanyname\", \"oppvalueadjusted\", \"cost\", \"quantity\", \"projecttimebudget\", \"projectmoneybudget\", \"projecttimeactual\", \"projectmoneyactual\", \"userdef1\", \"userdef2\", \"userdef3\", \"userdef4\", \"userdef5\", \"source\", \"release_important\", \"releasenotegroup_id\", \"third_party_id\", \"third_party_id_string\", \"supplier_status\", \"appointment_type\", \"section_timezone\", \"projectinternaltask\", \"impactlevel\", \"use\", \"maximumRestrictedPriority\", \"idsummary\", \"ticketage\", \"useful_count\", \"notuseful_count\", \"itil_requesttype_id\", \"closed_in_integration_system\", \"approval_status\"})",
+          "in",
+          "    #\"Expanded getPage Record\""
+        ],
+        "kind": "m",
+        "lineageTag": "140fddb4-e4ca-400f-9c5c-1a22e2c25a05",
+        "queryGroup": "01 API returns\\01-02 Paginated queries"
+      },
+      {
+        "name": "Users Raw",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    // a function which generates the token - needs to happen at the same time as the query, so PBI doesn't do dumb firewall stuff",
+          "    makeToken = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let",
+          "        loginURL = #\"HaloITSM-AuthURL\",",
+          "        TokenUri = \"/token\", // which domain is this a token for",
+          "        ResourceId = #\"HaloITSM-Resource\", // where is this token for",
+          "        TokenResponse = Json.Document(",
+          "            Web.Contents(loginURL",
+          "\t\t\t    , [RelativePath = TokenUri",
+          "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))",
+          "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}",
+          "\t\t\t    ]",
+          "            ) // end web contents",
+          "        ), // end json",
+          "        generatedToken = TokenResponse[access_token] // assign token value",
+          "    in generatedToken, // end function makeToken",
+          "    // invoke said function",
+          "    myToken = makeToken(",
+          "                        #\"HaloITSM-ResourceURL\"",
+          "                        , #\"HaloITSM-ClientID\"",
+          "                        , #\"HaloITSM-Secret\"",
+          "                    ) // end makeToken",
+          "    , ",
+          "    // invoke function on page1 to get userCount for pagination",
+          "    firstPage = Json.Document(",
+          "        Web.Contents(",
+          "            #\"HaloITSM-ResourceURL\"",
+          "            , [",
+          "                RelativePath = \"Users?pageinate=true&page_size=\" & Text.From(#\"pageSize\") & \"&page_no=1\"",
+          "                , Headers = [",
+          "                    Authorization = \"Bearer \" &  myToken",
+          "                ]",
+          "            ]",
+          "        )",
+          "    ), ",
+          "    pageList = {1..Number.RoundUp(@firstPage[record_count] / pageSize)},",
+          "     // a function which asks for one page of data",
+          "    getPage = let getPages = (pageNumber) => ",
+          "        Json.Document(",
+          "            Web.Contents(",
+          "                #\"HaloITSM-ResourceURL\"",
+          "                , [",
+          "                    RelativePath = \"Users?pageinate=true&page_size=\" & Text.From(#\"pageSize\") & \"&page_no=\" & Text.From(pageNumber) //pageNumber",
+          "                    , Headers = [",
+          "                        Authorization = \"Bearer \" &  myToken",
+          "                    ]",
+          "                ]",
+          "            ) // end webcontents",
+          "        )[users] // get part of json containing ticket list",
+          "    in getPages, // end function getPage",
+          "    #\"Converted pageList to Table\" = Table.FromList(pageList, Splitter.SplitByNothing(), null, null, ExtraValues.Error), ",
+          "    #\"Invoked getPage\" = Table.AddColumn(#\"Converted pageList to Table\", \"GetPage\", each getPage(Text.From([Column1]))),",
+          "    #\"Expanded GetPage List\" = Table.ExpandListColumn(#\"Invoked getPage\", \"GetPage\"),",
+          "    #\"Removed keep only Records\" = Table.SelectColumns(#\"Expanded GetPage List\",{\"GetPage\"}), ",
+          "    #\"Expanded GetPage Records\" = Table.ExpandRecordColumn(#\"Removed keep only Records\", \"GetPage\", {\"id\", \"name\", \"site_id\", \"site_name\", \"client_name\", \"firstname\", \"surname\", \"initials\", \"emailaddress\", \"phonenumber_preferred\", \"sitephonenumber\", \"phonenumber\", \"telpref\", \"activedirectory_dn\", \"login\", \"inactive\", \"colour\", \"isimportantcontact\", \"other1\", \"other2\", \"neversendemails\", \"priority_id\", \"linked_agent_id\", \"isserviceaccount\", \"isimportantcontact2\", \"connectwiseid\", \"autotaskid\", \"messagegroup_id\", \"use\", \"client_id\"}, {\"id\", \"name\", \"site_id\", \"site_name\", \"client_name\", \"firstname\", \"surname\", \"initials\", \"emailaddress\", \"phonenumber_preferred\", \"sitephonenumber\", \"phonenumber\", \"telpref\", \"activedirectory_dn\", \"login\", \"inactive\", \"colour\", \"isimportantcontact\", \"other1\", \"other2\", \"neversendemails\", \"priority_id\", \"linked_agent_id\", \"isserviceaccount\", \"isimportantcontact2\", \"connectwiseid\", \"autotaskid\", \"messagegroup_id\", \"use\", \"client_id\"})",
+          "in",
+          "    #\"Expanded GetPage Records\""
+        ],
+        "kind": "m",
+        "lineageTag": "b006c860-997b-47c6-9742-2c2667fb2979",
+        "queryGroup": "01 API returns\\01-02 Paginated queries"
       }
     ],
     "queryGroups": [
@@ -580,6 +732,13 @@
         "fromTable": "Tickets",
         "toColumn": "name",
         "toTable": "Teams"
+      },
+      {
+        "name": "ca279a25-bcfa-4fee-8840-85583af78a26",
+        "fromColumn": "Date Created",
+        "fromTable": "Tickets",
+        "toColumn": "Date",
+        "toTable": "DateDimensionBI"
       }
     ],
     "sourceQueryCulture": "en-AU",
@@ -696,6 +855,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -981,66 +1144,13 @@
           {
             "name": "Users",
             "mode": "import",
-            "queryGroup": "01 API returns\\01-02 Paginated queries",
+            "queryGroup": "03 Report Tables",
             "source": {
               "expression": [
                 "// Users",
-                "let",
-                "    // a function which generates the token - needs to happen at the same time as the query, so PBI doesn't do dumb firewall stuff",
-                "    makeToken = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let",
-                "        loginURL = #\"HaloITSM-AuthURL\",",
-                "        TokenUri = \"/token\", // which domain is this a token for",
-                "        ResourceId = #\"HaloITSM-Resource\", // where is this token for",
-                "        TokenResponse = Json.Document(",
-                "            Web.Contents(loginURL",
-                "\t\t\t    , [RelativePath = TokenUri",
-                "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))",
-                "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}",
-                "\t\t\t    ]",
-                "            ) // end web contents",
-                "        ), // end json",
-                "        generatedToken = TokenResponse[access_token] // assign token value",
-                "    in generatedToken, // end function makeToken",
-                "    // invoke said function",
-                "    myToken = makeToken(",
-                "                        #\"HaloITSM-ResourceURL\"",
-                "                        , #\"HaloITSM-ClientID\"",
-                "                        , #\"HaloITSM-Secret\"",
-                "                    ) // end makeToken",
-                "    , ",
-                "    // invoke function on page1 to get userCount for pagination",
-                "    firstPage = Json.Document(",
-                "        Web.Contents(",
-                "            #\"HaloITSM-ResourceURL\"",
-                "            , [",
-                "                RelativePath = \"Users?pageinate=true&page_size=\" & Text.From(#\"pageSize\") & \"&page_no=1\"",
-                "                , Headers = [",
-                "                    Authorization = \"Bearer \" &  myToken",
-                "                ]",
-                "            ]",
-                "        )",
-                "    ), ",
-                "    pageList = {1..Number.RoundUp(@firstPage[record_count] / pageSize)},",
-                "     // a function which asks for one page of data",
-                "    getPage = let getPages = (pageNumber) => ",
-                "        Json.Document(",
-                "            Web.Contents(",
-                "                #\"HaloITSM-ResourceURL\"",
-                "                , [",
-                "                    RelativePath = \"Users?pageinate=true&page_size=\" & Text.From(#\"pageSize\") & \"&page_no=\" & Text.From(pageNumber) //pageNumber",
-                "                    , Headers = [",
-                "                        Authorization = \"Bearer \" &  myToken",
-                "                    ]",
-                "                ]",
-                "            ) // end webcontents",
-                "        )[users] // get part of json containing ticket list",
-                "    in getPages, // end function getPage",
-                "    #\"Converted pageList to Table\" = Table.FromList(pageList, Splitter.SplitByNothing(), null, null, ExtraValues.Error), ",
-                "    #\"Invoked getPage\" = Table.AddColumn(#\"Converted pageList to Table\", \"GetPage\", each getPage(Text.From([Column1]))),",
-                "    #\"Expanded GetPage List\" = Table.ExpandListColumn(#\"Invoked getPage\", \"GetPage\"),",
-                "    #\"Removed keep only Records\" = Table.SelectColumns(#\"Expanded GetPage List\",{\"GetPage\"}), ",
-                "    #\"Expanded GetPage Records\" = Table.ExpandRecordColumn(#\"Removed keep only Records\", \"GetPage\", {\"id\", \"name\", \"site_id\", \"site_name\", \"client_name\", \"firstname\", \"surname\", \"initials\", \"emailaddress\", \"phonenumber_preferred\", \"sitephonenumber\", \"phonenumber\", \"telpref\", \"activedirectory_dn\", \"login\", \"inactive\", \"colour\", \"isimportantcontact\", \"other1\", \"other2\", \"neversendemails\", \"priority_id\", \"linked_agent_id\", \"isserviceaccount\", \"isimportantcontact2\", \"connectwiseid\", \"autotaskid\", \"messagegroup_id\", \"use\", \"client_id\"}, {\"id\", \"name\", \"site_id\", \"site_name\", \"client_name\", \"firstname\", \"surname\", \"initials\", \"emailaddress\", \"phonenumber_preferred\", \"sitephonenumber\", \"phonenumber\", \"telpref\", \"activedirectory_dn\", \"login\", \"inactive\", \"colour\", \"isimportantcontact\", \"other1\", \"other2\", \"neversendemails\", \"priority_id\", \"linked_agent_id\", \"isserviceaccount\", \"isimportantcontact2\", \"connectwiseid\", \"autotaskid\", \"messagegroup_id\", \"use\", \"client_id\"}),",
-                "    #\"Renamed id to UserId\" = Table.RenameColumns(#\"Expanded GetPage Records\",{{\"id\", \"user id\"}}),",
+                "let    ",
+                "    Source = #\"Users Raw\", ",
+                "    #\"Renamed id to UserId\" = Table.RenameColumns(Source,{{\"id\", \"user id\"}}),",
                 "    #\"Changed types to T|F\" = Table.TransformColumnTypes(#\"Renamed id to UserId\",{{\"inactive\", type logical}, {\"isimportantcontact\", type logical}, {\"neversendemails\", type logical}, {\"isserviceaccount\", type logical}, {\"isimportantcontact2\", type logical}}),",
                 "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Changed types to T|F\",{\"user id\", \"name\", \"site_id\", \"site_name\", \"client_id\", \"client_name\", \"firstname\", \"surname\", \"initials\", \"emailaddress\", \"phonenumber_preferred\", \"sitephonenumber\", \"phonenumber\", \"activedirectory_dn\", \"login\", \"inactive\", \"colour\", \"other1\", \"other2\", \"linked_agent_id\"}),",
                 "    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Other Columns\",{{\"other1\", \"Role level 1\"}, {\"other2\", \"Role level 2\"}}),",
@@ -1556,6 +1666,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1782,45 +1896,6 @@
             "summarizeBy": "none"
           },
           {
-            "name": "category_2",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "1a8ffc00-80a7-4b63-92a8-dead682c1d2c",
-            "sourceColumn": "category_2",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "category_3",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "710a9f75-d551-46e0-801f-4e783efc247a",
-            "sourceColumn": "category_3",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "category_4",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "397789bd-67d5-491d-a9a7-98d1ee5405dd",
-            "sourceColumn": "category_4",
-            "summarizeBy": "none"
-          },
-          {
             "name": "estimate",
             "annotations": [
               {
@@ -1936,34 +2011,6 @@
             "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
             "lineageTag": "3a7db0d2-1bd2-47d7-b1c4-762cab1fe395",
             "sourceColumn": "onhold",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "respondbydate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "dateTime",
-            "formatString": "General Date",
-            "lineageTag": "94ba2654-dfc0-4178-9262-a46216a3fd07",
-            "sourceColumn": "respondbydate",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "fixbydate",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "dateTime",
-            "formatString": "General Date",
-            "lineageTag": "11c195c3-2104-4b23-8e88-795f6ddf11a3",
-            "sourceColumn": "fixbydate",
             "summarizeBy": "none"
           },
           {
@@ -2742,6 +2789,24 @@
             "lineageTag": "827834f4-f7e3-45b3-9437-0a212acfe2b1",
             "sourceColumn": "approval_status",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Date Created",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "9dd8f0de-f539-4e2f-84a1-5b1a3cf88913",
+            "sourceColumn": "Date Created",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "4e544384-e753-41a1-b3df-268e23a11e6f",
@@ -2749,75 +2814,22 @@
           {
             "name": "Tickets",
             "mode": "import",
-            "queryGroup": "01 API returns\\01-02 Paginated queries",
+            "queryGroup": "03 Report Tables",
             "source": {
               "expression": [
                 "let",
-                "    // a function which generates the token - needs to happen at the same time as the query, so PBI doesn't do dumb firewall stuff",
-                "    makeToken = (#\"HaloITSM-Resource\" as any, #\"HaloITSM-ClientID\" as any, #\"HaloITSM-Secret\" as any) => let",
-                "        loginURL = #\"HaloITSM-AuthURL\",",
-                "        TokenUri = \"/token\", // which domain is this a token for",
-                "        ResourceId = #\"HaloITSM-Resource\", // where is this token for",
-                "        TokenResponse = Json.Document(",
-                "            Web.Contents(loginURL",
-                "\t\t\t    , [RelativePath = TokenUri",
-                "\t\t\t    , Content = Text.ToBinary(Uri.BuildQueryString([grant_type = \"client_credentials\", client_id = #\"HaloITSM-ClientID\", client_secret = #\"HaloITSM-Secret\", scope = \"all\"]))",
-                "\t\t\t\t, Headers = [#\"Content-Type\" = \"application/x-www-form-urlencoded\"], ManualStatusHandling = {400}",
-                "\t\t\t    ]",
-                "            ) // end web contents",
-                "        ), // end json",
-                "        generatedToken = TokenResponse[access_token] // assign token value",
-                "    in generatedToken // end function makeToken",
-                "    , ",
-                "    // invoke said function",
-                "    myToken = makeToken(",
-                "                        #\"HaloITSM-ResourceURL\"",
-                "                        , #\"HaloITSM-ClientID\"",
-                "                        , #\"HaloITSM-Secret\"",
-                "                    ) // end makeToken",
-                "    , ",
-                "    // invoke function on page1 to get ticketCount for pagination",
-                "    firstPage = Json.Document(",
-                "            Web.Contents(",
-                "                #\"HaloITSM-ResourceURL\"",
-                "                , [",
-                "                    RelativePath = \"Tickets?pageinate=true&page_size=\" & Text.From(#\"pageSize\") & \"&page_no=\" & Text.From(1) // use page 1 to access how many records there will be",
-                "                    , Headers = [",
-                "                        Authorization = \"Bearer \" &  myToken",
-                "                    ]",
-                "                ]",
-                "            ) // end webcontents",
-                "        ),",
-                "    pageList = {1..Number.RoundUp(@firstPage[record_count] / pageSize)},",
-                "    // a function which asks for one page of data",
-                "    getPage = let getPages = (pageNumber) => ",
-                "        Json.Document(",
-                "            Web.Contents(",
-                "                #\"HaloITSM-ResourceURL\"",
-                "                , [",
-                "                    RelativePath = \"Tickets?pageinate=true&page_size=\" & Text.From(#\"pageSize\") & \"&page_no=\" & Text.From(pageNumber) //pageNumber",
-                "                    , Headers = [",
-                "                        Authorization = \"Bearer \" &  myToken",
-                "                    ]",
-                "                ]",
-                "            ) // end webcontents",
-                "        )[tickets] // get part of json containing ticket list",
-                "    in getPages // end function getPage",
-                "    , ",
-                "    #\"Converted page list to Table\" = Table.FromList(pageList, Splitter.SplitByNothing(), null, null, ExtraValues.Error),",
-                "    #\"Invoked getPage\" = Table.AddColumn(#\"Converted page list to Table\", \"GetPage\", each getPage(Text.From([Column1]))),",
-                "    #\"Expanded getPage list\" = Table.ExpandListColumn(#\"Invoked getPage\", \"GetPage\"),",
-                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Expanded getPage list\",{\"GetPage\"}), ",
-                "    #\"Expanded getPage Record\" = Table.ExpandRecordColumn(#\"Removed Other Columns\", \"GetPage\", {\"id\", \"dateoccurred\", \"summary\", \"details\", \"status_id\", \"tickettype_id\", \"sla_id\", \"priority_id\", \"client_id\", \"client_name\", \"site_id\", \"site_name\", \"user_id\", \"user_name\", \"team\", \"agent_id\", \"category_1\", \"category_2\", \"category_3\", \"category_4\", \"estimate\", \"estimatedays\", \"parent_id\", \"child_count\", \"attachment_count\", \"flagged\", \"read\", \"enduserstatus\", \"onhold\", \"respondbydate\", \"fixbydate\", \"dateassigned\", \"excludefromsla\", \"slaholdtime\", \"site_timezone\", \"lastactiondate\", \"organisation_id\", \"department_id\", \"reportedby\", \"user_email\", \"emailtolist\", \"emailtolistsupplier\", \"emailcclist\", \"emailcclistsupplier\", \"matched_kb_id\", \"product_id\", \"release_id\", \"release2_id\", \"release3_id\", \"lastincomingemail\", \"inventory_number\", \"workflow_id\", \"workflow_step\", \"hasbeenclosed\", \"is_vip\", \"isimportantcontact\", \"inactive\", \"impact\", \"urgency\", \"startdate\", \"starttime\", \"starttimeslot\", \"targetdate\", \"targettime\", \"targettimeslot\", \"deadlinedate\", \"oppcompanyname\", \"oppvalueadjusted\", \"cost\", \"quantity\", \"projecttimebudget\", \"projectmoneybudget\", \"projecttimeactual\", \"projectmoneyactual\", \"userdef1\", \"userdef2\", \"userdef3\", \"userdef4\", \"userdef5\", \"source\", \"release_important\", \"releasenotegroup_id\", \"third_party_id\", \"third_party_id_string\", \"supplier_status\", \"appointment_type\", \"section_timezone\", \"projectinternaltask\", \"impactlevel\", \"use\", \"maximumRestrictedPriority\", \"idsummary\", \"ticketage\", \"useful_count\", \"notuseful_count\", \"itil_requesttype_id\", \"closed_in_integration_system\", \"approval_status\"}, {\"id\", \"dateoccurred\", \"summary\", \"details\", \"status_id\", \"tickettype_id\", \"sla_id\", \"priority_id\", \"client_id\", \"client_name\", \"site_id\", \"site_name\", \"user_id\", \"user_name\", \"team\", \"agent_id\", \"category_1\", \"category_2\", \"category_3\", \"category_4\", \"estimate\", \"estimatedays\", \"parent_id\", \"child_count\", \"attachment_count\", \"flagged\", \"read\", \"enduserstatus\", \"onhold\", \"respondbydate\", \"fixbydate\", \"dateassigned\", \"excludefromsla\", \"slaholdtime\", \"site_timezone\", \"lastactiondate\", \"organisation_id\", \"department_id\", \"reportedby\", \"user_email\", \"emailtolist\", \"emailtolistsupplier\", \"emailcclist\", \"emailcclistsupplier\", \"matched_kb_id\", \"product_id\", \"release_id\", \"release2_id\", \"release3_id\", \"lastincomingemail\", \"inventory_number\", \"workflow_id\", \"workflow_step\", \"hasbeenclosed\", \"is_vip\", \"isimportantcontact\", \"inactive\", \"impact\", \"urgency\", \"startdate\", \"starttime\", \"starttimeslot\", \"targetdate\", \"targettime\", \"targettimeslot\", \"deadlinedate\", \"oppcompanyname\", \"oppvalueadjusted\", \"cost\", \"quantity\", \"projecttimebudget\", \"projectmoneybudget\", \"projecttimeactual\", \"projectmoneyactual\", \"userdef1\", \"userdef2\", \"userdef3\", \"userdef4\", \"userdef5\", \"source\", \"release_important\", \"releasenotegroup_id\", \"third_party_id\", \"third_party_id_string\", \"supplier_status\", \"appointment_type\", \"section_timezone\", \"projectinternaltask\", \"impactlevel\", \"use\", \"maximumRestrictedPriority\", \"idsummary\", \"ticketage\", \"useful_count\", \"notuseful_count\", \"itil_requesttype_id\", \"closed_in_integration_system\", \"approval_status\"}),",
-                "    #\"Changed Types - TF and datetimezones\" = Table.TransformColumnTypes(#\"Expanded getPage Record\",{{\"dateoccurred\", type datetimezone}, {\"respondbydate\", type datetimezone}, {\"fixbydate\", type datetimezone}, {\"dateassigned\", type datetimezone}, {\"onhold\", type logical}, {\"excludefromsla\", type logical}, {\"lastactiondate\", type datetimezone}, {\"hasbeenclosed\", type logical}, {\"is_vip\", type logical}, {\"isimportantcontact\", type logical}, {\"inactive\", type logical}, {\"release_important\", type logical}, {\"projectinternaltask\", type logical}, {\"closed_in_integration_system\", type logical}}),",
+                "    Source = #\"Tickets Raw\", // end function makeToken",
+                "    #\"Changed Types - TF and datetimezones\" = Table.TransformColumnTypes(Source,{{\"dateoccurred\", type datetimezone}, {\"respondbydate\", type datetimezone}, {\"fixbydate\", type datetimezone}, {\"dateassigned\", type datetimezone}, {\"onhold\", type logical}, {\"excludefromsla\", type logical}, {\"lastactiondate\", type datetimezone}, {\"hasbeenclosed\", type logical}, {\"is_vip\", type logical}, {\"isimportantcontact\", type logical}, {\"inactive\", type logical}, {\"release_important\", type logical}, {\"projectinternaltask\", type logical}, {\"closed_in_integration_system\", type logical}}),",
                 "    // these hold null or default values",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Types - TF and datetimezones\",{\"lastincomingemail\", \"startdate\", \"starttime\", \"starttimeslot\", \"targetdate\", \"targettime\", \"targettimeslot\", \"deadlinedate\"}),",
-                "    #\"Replaced blank w/ null\" = Table.ReplaceValue(#\"Removed Columns\",\"\",null,Replacer.ReplaceValue,{\"id\", \"dateoccurred\", \"summary\", \"details\", \"status_id\", \"tickettype_id\", \"sla_id\", \"priority_id\", \"client_id\", \"client_name\", \"site_id\", \"site_name\", \"user_id\", \"user_name\", \"team\", \"agent_id\", \"category_1\", \"category_2\", \"category_3\", \"category_4\", \"estimate\", \"estimatedays\", \"parent_id\", \"child_count\", \"attachment_count\", \"flagged\", \"read\", \"enduserstatus\", \"onhold\", \"respondbydate\", \"fixbydate\", \"dateassigned\", \"excludefromsla\", \"slaholdtime\", \"site_timezone\", \"lastactiondate\", \"organisation_id\", \"department_id\", \"reportedby\", \"user_email\", \"emailtolist\", \"emailtolistsupplier\", \"emailcclist\", \"emailcclistsupplier\", \"matched_kb_id\", \"product_id\", \"release_id\", \"release2_id\", \"release3_id\", \"inventory_number\", \"workflow_id\", \"workflow_step\", \"hasbeenclosed\", \"is_vip\", \"isimportantcontact\", \"inactive\", \"impact\", \"urgency\", \"oppcompanyname\", \"oppvalueadjusted\", \"cost\", \"quantity\", \"projecttimebudget\", \"projectmoneybudget\", \"projecttimeactual\", \"projectmoneyactual\", \"userdef1\", \"userdef2\", \"userdef3\", \"userdef4\", \"userdef5\", \"source\", \"release_important\", \"releasenotegroup_id\", \"third_party_id\", \"third_party_id_string\", \"supplier_status\", \"appointment_type\", \"section_timezone\", \"projectinternaltask\", \"impactlevel\", \"use\", \"maximumRestrictedPriority\", \"idsummary\", \"ticketage\", \"useful_count\", \"notuseful_count\", \"itil_requesttype_id\", \"closed_in_integration_system\", \"approval_status\"}),",
+                "    // response time is currently default date, not actual date - so can't do avg time to respond",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Types - TF and datetimezones\",{\"lastincomingemail\", \"startdate\", \"starttime\", \"starttimeslot\", \"targetdate\", \"targettime\", \"targettimeslot\", \"deadlinedate\", \"respondbydate\", \"fixbydate\", \"category_2\", \"category_3\", \"category_4\"}),",
+                "    #\"Replaced blank w/ null\" = Table.ReplaceValue(#\"Removed Columns\",\"\",null,Replacer.ReplaceValue,{\"id\", \"dateoccurred\", \"summary\", \"details\", \"status_id\", \"tickettype_id\", \"sla_id\", \"priority_id\", \"client_id\", \"client_name\", \"site_id\", \"site_name\", \"user_id\", \"user_name\", \"team\", \"agent_id\", \"category_1\", \"estimate\", \"estimatedays\", \"parent_id\", \"child_count\", \"attachment_count\", \"flagged\", \"read\", \"enduserstatus\", \"onhold\", \"dateassigned\", \"excludefromsla\", \"slaholdtime\", \"site_timezone\", \"lastactiondate\", \"organisation_id\", \"department_id\", \"reportedby\", \"user_email\", \"emailtolist\", \"emailtolistsupplier\", \"emailcclist\", \"emailcclistsupplier\", \"matched_kb_id\", \"product_id\", \"release_id\", \"release2_id\", \"release3_id\", \"inventory_number\", \"workflow_id\", \"workflow_step\", \"hasbeenclosed\", \"is_vip\", \"isimportantcontact\", \"inactive\", \"impact\", \"urgency\", \"oppcompanyname\", \"oppvalueadjusted\", \"cost\", \"quantity\", \"projecttimebudget\", \"projectmoneybudget\", \"projecttimeactual\", \"projectmoneyactual\", \"userdef1\", \"userdef2\", \"userdef3\", \"userdef4\", \"userdef5\", \"source\", \"release_important\", \"releasenotegroup_id\", \"third_party_id\", \"third_party_id_string\", \"supplier_status\", \"appointment_type\", \"section_timezone\", \"projectinternaltask\", \"impactlevel\", \"use\", \"maximumRestrictedPriority\", \"idsummary\", \"ticketage\", \"useful_count\", \"notuseful_count\", \"itil_requesttype_id\", \"closed_in_integration_system\", \"approval_status\"}),",
                 "    #\"Cleaned Text\" = Table.TransformColumns(#\"Replaced blank w/ null\",{{\"details\", Text.Clean, type text}, {\"summary\", Text.Clean, type text}, {\"client_name\", Text.Clean, type text}, {\"site_name\", Text.Clean, type text}, {\"user_name\", Text.Clean, type text}, {\"team\", Text.Clean, type text}, {\"category_1\", Text.Clean, type text}, {\"reportedby\", Text.Clean, type text}, {\"user_email\", Text.Clean, type text}, {\"emailtolist\", Text.Clean, type text}, {\"emailtolistsupplier\", Text.Clean, type text}, {\"emailcclist\", Text.Clean, type text}, {\"oppcompanyname\", Text.Clean, type text}, {\"userdef1\", Text.Clean, type text}, {\"userdef2\", Text.Clean, type text}, {\"idsummary\", Text.Clean, type text}}),",
-                "    #\"Trimmed Text\" = Table.TransformColumns(Table.TransformColumnTypes(#\"Cleaned Text\", {{\"category_2\", type text}, {\"category_3\", type text}, {\"category_4\", type text}, {\"emailcclistsupplier\", type text}}, \"en-AU\"),{{\"details\", Text.Trim, type text}, {\"summary\", Text.Trim, type text}, {\"client_name\", Text.Trim, type text}, {\"site_name\", Text.Trim, type text}, {\"user_name\", Text.Trim, type text}, {\"team\", Text.Trim, type text}, {\"category_1\", Text.Trim, type text}, {\"reportedby\", Text.Trim, type text}, {\"user_email\", Text.Trim, type text}, {\"emailtolist\", Text.Trim, type text}, {\"emailtolistsupplier\", Text.Trim, type text}, {\"emailcclist\", Text.Trim, type text}, {\"oppcompanyname\", Text.Trim, type text}, {\"userdef1\", Text.Trim, type text}, {\"userdef2\", Text.Trim, type text}, {\"idsummary\", Text.Trim, type text}}),",
-                "    #\"Renamed id to TicketId\" = Table.RenameColumns(#\"Trimmed Text\",{{\"id\", \"ticket id\"}})",
+                "    #\"Trimmed Text\" = Table.TransformColumns(Table.TransformColumnTypes(#\"Cleaned Text\", {{\"emailcclistsupplier\", type text}}, \"en-AU\"),{{\"details\", Text.Trim, type text}, {\"summary\", Text.Trim, type text}, {\"client_name\", Text.Trim, type text}, {\"site_name\", Text.Trim, type text}, {\"user_name\", Text.Trim, type text}, {\"team\", Text.Trim, type text}, {\"category_1\", Text.Trim, type text}, {\"reportedby\", Text.Trim, type text}, {\"user_email\", Text.Trim, type text}, {\"emailtolist\", Text.Trim, type text}, {\"emailtolistsupplier\", Text.Trim, type text}, {\"emailcclist\", Text.Trim, type text}, {\"oppcompanyname\", Text.Trim, type text}, {\"userdef1\", Text.Trim, type text}, {\"userdef2\", Text.Trim, type text}, {\"idsummary\", Text.Trim, type text}}),",
+                "    #\"Renamed id to TicketId\" = Table.RenameColumns(#\"Trimmed Text\",{{\"id\", \"ticket id\"}}),",
+                "    #\"Added Date occurred\" = Table.AddColumn(#\"Renamed id to TicketId\", \"Date Created\", each DateTime.Date([dateoccurred]), type date)",
                 "in",
-                "    #\"Renamed id to TicketId\""
+                "    #\"Added Date occurred\""
               ],
               "type": "m"
             }
@@ -3522,6 +3534,12 @@
             ],
             "formatString": "#,0",
             "lineageTag": "21b8b513-3a6b-459b-bd80-207dd4f8e09f"
+          },
+          {
+            "name": "Resolution rate",
+            "expression": "[Resolved Tickets] / [Tickets]",
+            "formatString": "0.0%;-0.0%;0.0%",
+            "lineageTag": "be83b48e-5207-4e91-819b-55b4181dec90"
           }
         ],
         "partitions": [
@@ -3569,14 +3587,14 @@
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "9a4f62bc-15ef-44f3-9175-e7c789239775",
             "sourceColumn": "Year",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Start of Year",
@@ -3619,14 +3637,14 @@
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "2dc7f129-2d29-4da8-87ba-583af8e77301",
             "sourceColumn": "Month Number",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Month Name",
@@ -3682,28 +3700,28 @@
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "add5890b-0cf7-4ea7-967a-15e9fe1cabf6",
             "sourceColumn": "Days in Month",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Quarter Number",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "f4aba805-c177-4259-9896-3c751b6a6b2a",
             "sourceColumn": "Quarter Number",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Quarter Start Date",
@@ -3746,28 +3764,28 @@
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "2318b807-03ea-499a-b5a6-edd6c6efbe8e",
             "sourceColumn": "Week Number of Year",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Week Number of Month",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "80bb4c70-7e48-4650-8b93-e4343e95d028",
             "sourceColumn": "Week Number of Month",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Week Start Date",
@@ -3810,42 +3828,42 @@
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "f989ca1e-4aa1-4236-8af8-38681b31bd1f",
             "sourceColumn": "Day of Month",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Day of Week",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "0b18a20f-12c2-4717-89b2-91a20f69177d",
             "sourceColumn": "Day of Week",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Day of Year",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "14758635-3bda-41b0-b449-7ea0d1cd67e8",
             "sourceColumn": "Day of Year",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Day Name",
@@ -3886,6 +3904,34 @@
             "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
             "lineageTag": "009dc3e4-d396-4b2e-99b1-9768a744ec44",
             "sourceColumn": "isFuture",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Reporting Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "lineageTag": "a31d2b1f-8416-4e71-9aa0-160897cff5a7",
+            "sourceColumn": "Reporting Month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Reporting Month - Last year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "lineageTag": "ffe57c43-9b9d-4476-bda4-d28ff1698d6d",
+            "sourceColumn": "Reporting Month - Last year",
             "summarizeBy": "none"
           }
         ],
